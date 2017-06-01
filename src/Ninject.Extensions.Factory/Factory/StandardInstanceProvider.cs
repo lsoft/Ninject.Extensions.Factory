@@ -56,7 +56,12 @@ namespace Ninject.Extensions.Factory
             var constraint = this.GetConstraint(methodInfo, arguments);
             var type = this.GetType(methodInfo, arguments);
 
+#if CORECLR
+            var typeInfo = type.GetTypeInfo();
+            if(typeInfo.IsGenericType)
+#else
             if (type.IsGenericType)
+#endif
             {
                 var genericType = type.GetGenericTypeDefinition();
                 if (genericType == typeof(IEnumerable<>) || 

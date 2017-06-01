@@ -32,6 +32,8 @@ namespace Ninject.Extensions.Factory
     using Xunit;
     using Xunit.Extensions;
 
+    using System.Reflection;
+    
     public class FuncTests : IDisposable
     {
         private readonly StandardKernel kernel;
@@ -190,7 +192,9 @@ namespace Ninject.Extensions.Factory
             weapons.Any(w => w.GetType() == typeof(Dagger)).Should().BeTrue();
         }
 
-#if !NET_35 && !SILVERLIGHT_30 && !SILVERLIGHT_20 && !WINDOWS_PHONE && !NETCF_35
+#if !NET_35 && !SILVERLIGHT_30 && !SILVERLIGHT_20 && !WINDOWS_PHONE && !NETCF_35 && !CORECLR
+        ///there are some troubles with Lazy<T> on .Net Core
+        ///please refer https://github.com/ninject/Ninject.Extensions.Factory/issues/35 for additional information
         [Fact]
         public void LazyInjection()
         {

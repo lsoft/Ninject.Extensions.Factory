@@ -23,8 +23,9 @@ namespace Ninject.Extensions.Factory
 {
     using System;
     using System.Linq;
+    using System.Reflection;
 
-#if !SILVERLIGHT_20 && !WINDOWS_PHONE && !NETCF_35
+#if (!SILVERLIGHT_20 && !WINDOWS_PHONE && !NETCF_35) || CORECLR
     using Castle.DynamicProxy;
 #endif
 
@@ -50,9 +51,9 @@ namespace Ninject.Extensions.Factory
             this.Bind<FuncProvider>().ToSelf().InSingletonScope();
             this.Bind<IFunctionFactory>().To<FunctionFactory>();
             this.Bind<IInstanceProvider>().To<StandardInstanceProvider>();
-#if !SILVERLIGHT_20 && !WINDOWS_PHONE && !NETCF_35
+#if (!SILVERLIGHT_20 && !WINDOWS_PHONE && !NETCF_35) || CORECLR
             this.Bind<IInterceptor>().To<FactoryInterceptor>()
-                .When(request => typeof(IFactoryProxy).IsAssignableFrom(request.Target.Member.ReflectedType));
+                .When(request => typeof(IFactoryProxy).IsAssignableFrom(request.Target.Member.ReflectedType()));
 #endif
 
             this.Bind(typeof(Func<>)).ToProvider<FuncProvider>();
@@ -60,7 +61,7 @@ namespace Ninject.Extensions.Factory
             this.Bind(typeof(Func<,,>)).ToProvider<FuncProvider>();
             this.Bind(typeof(Func<,,,>)).ToProvider<FuncProvider>();
             this.Bind(typeof(Func<,,,,>)).ToProvider<FuncProvider>();
-#if !NET_35 && !SILVERLIGHT_30 && !SILVERLIGHT_20 && !WINDOWS_PHONE && !NETCF_35
+#if (!NET_35 && !SILVERLIGHT_30 && !SILVERLIGHT_20 && !WINDOWS_PHONE && !NETCF_35) || CORECLR
             this.Bind(typeof(Func<,,,,,>)).ToProvider<FuncProvider>();
             this.Bind(typeof(Func<,,,,,,>)).ToProvider<FuncProvider>();
             this.Bind(typeof(Func<,,,,,,,>)).ToProvider<FuncProvider>();

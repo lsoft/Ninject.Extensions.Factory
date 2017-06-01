@@ -20,7 +20,9 @@
 //-------------------------------------------------------------------------------
 
 #if !NO_MOQ
-#if !SILVERLIGHT && !WINDOWS_PHONE && !NETCF_35
+#if !SILVERLIGHT && !WINDOWS_PHONE && !NETCF_35 && !CORECLR
+///there are some troubles with Castle.DynamicProxy on .Net Core
+///please refer https://github.com/ninject/Ninject.Extensions.Factory/issues/35 for additional information
 namespace Ninject.Extensions.Factory.UnitTests
 {
     using Castle.DynamicProxy;
@@ -29,6 +31,8 @@ namespace Ninject.Extensions.Factory.UnitTests
     using Ninject.Syntax;
     using Xunit;
 
+    using System.Reflection;
+    
     public class FactoryInterceptorTests
     {
         private readonly Mock<IResolutionRoot> resolutionRootMock;

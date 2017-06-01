@@ -35,6 +35,8 @@ namespace Ninject.Extensions.Factory.UnitTests
     using Xunit;
     using Xunit.Extensions;
 
+    using System.Reflection;
+    
     public class ArgumentPositionCalculatorTests
     {
         private readonly ArgumentPositionCalculator testee;

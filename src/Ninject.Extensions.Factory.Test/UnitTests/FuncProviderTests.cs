@@ -34,6 +34,8 @@ namespace Ninject.Extensions.Factory.UnitTests
 
     using Xunit;
 
+    using System.Reflection;
+    
     public class FuncProviderTests
     {
         private readonly Mock<IFunctionFactory> funcFactoryMock;

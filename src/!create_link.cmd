@@ -1,0 +1,1 @@
+mklink /D Ninject ..\..\Ninject\src\Ninject

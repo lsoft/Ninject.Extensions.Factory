@@ -28,7 +28,9 @@ namespace Ninject.Extensions.Factory.Factory
     using Ninject.Parameters;
     using Ninject.Planning.Bindings;
     using Ninject.Syntax;
-
+    
+    using System.Reflection;
+    
     /// <summary>
     /// Resolves instances from the kernel.
     /// </summary>

@@ -692,7 +692,13 @@ namespace Ninject.Extensions.Factory
         private static Func<IEnumerable<object>, TService> GetConvertionFunction<TService>(out Type instanceType)
         {
             var type = typeof(TService);
+            var typeInfo = type.GetTypeInfo();
+            
+#if CORECLR
+            if (typeInfo.IsGenericType)
+#else            
             if (type.IsGenericType)
+#endif
             {
                 var genericType = type.GetGenericTypeDefinition();
                 if (genericType == typeof(IEnumerable<>) ||
