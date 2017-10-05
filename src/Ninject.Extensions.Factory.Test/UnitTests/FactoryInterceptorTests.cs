@@ -20,9 +20,7 @@
 //-------------------------------------------------------------------------------
 
 #if !NO_MOQ
-#if !SILVERLIGHT && !WINDOWS_PHONE && !NETCF_35 && !CORECLR
-///there are some troubles with Castle.DynamicProxy on .Net Core
-///please refer https://github.com/ninject/Ninject.Extensions.Factory/issues/35 for additional information
+#if !SILVERLIGHT && !WINDOWS_PHONE && !NETCF_35 
 namespace Ninject.Extensions.Factory.UnitTests
 {
     using Castle.DynamicProxy;
