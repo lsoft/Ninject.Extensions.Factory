@@ -2,6 +2,11 @@
 
 This Ninject extension allows to create factory implementations automatically.
 
+...
+
+
+[This fork is OBSOLETE today: Please refer to Ninject.Externsions.Factory 3.3.x or higher]
+
 This fork is paired with Ninject 3.2.3 and is intended for .Net Core 2. All unit tests are green except for two.
 Castle interceptor IS NOT supported. Lazy<T> auto resolving IS NOT supported.
 For additonal information please refer https://github.com/ninject/Ninject.Extensions.Factory/issues/35
